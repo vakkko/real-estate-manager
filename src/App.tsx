@@ -1,11 +1,11 @@
+import { Outlet } from "react-router";
 import Logo from "./components/Logo/Logo";
-import { GlobalStyles } from "./GlobalStyles";
 
 function App() {
   return (
     <>
-      <GlobalStyles />
       <Logo />
+      <Outlet />
     </>
   );
 }

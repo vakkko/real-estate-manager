@@ -4,8 +4,8 @@ export const GlobalStyles = createGlobalStyle`
 
 @font-face {
     font-family: 'FiraGo' ;
-    src: url("./fonts/FiraGo-Regular.woff") format("woff"),
-    url("./fonts/FiraGo-Regular.woff2") format("woff2");
+    src: url("/fonts/FiraGO-Regular.woff") format("woff"),
+    url("/fonts/FiraGO-Regular.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
 }
@@ -24,8 +24,16 @@ body{
     font-family: 'FiraGo', sans-serif;
 }
 
+button{
+    background-color: transparent;
+    border: none;
+    font-family: 'FiraGo', sans-serif;
+}
+
 :root{
     --lightGray: #DBDBDB;
+    --darkBlue: #021526;
+    --orange: #F93B1D;
 }
 
 `;
