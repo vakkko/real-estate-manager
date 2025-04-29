@@ -1,0 +1,64 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
+
+@font-face {
+    font-family: 'FiraGo' ;
+    src: url("/fonts/FiraGO-Regular.woff2") format("woff2"),
+     url("/fonts/FiraGO-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FiraGo';
+    src: url("/fonts/FiraGo-Medium.woff2") format("woff2"),
+    url("/fonts/FiraGo-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family: 'FiraGo', sans-serif;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    font-family: 'FiraGo', sans-serif;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+}
+
+input{
+    outline: none;
+    font-family: 'FiraGo', sans-serif;
+}
+
+textarea{
+    resize: none;
+    outline: none;
+    font-family: 'FiraGo', sans-serif;
+}
+
+:root{
+    --lightGray: #DBDBDB;
+    --darkBlue: #021526;
+    --orange: #F93B1D;
+    --gray: #808A93;
+}
+
+`;

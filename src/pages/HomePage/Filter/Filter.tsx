@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Button from "../../../components/Button/Button";
 import { ButtonsDiv, FilterDiv, FilterOptions } from "./filter.styled";
 
@@ -24,8 +25,9 @@ export default function Filter() {
           </button>
         </FilterOptions>
         <ButtonsDiv>
-          <Button symbol text="ლისტინგის დამატება" background />
-
+          <Link to={"/add-listing"}>
+            <Button symbol text="ლისტინგის დამატება" background />
+          </Link>
           <Button symbol text="აგენტის დამატება" />
         </ButtonsDiv>
       </FilterDiv>
