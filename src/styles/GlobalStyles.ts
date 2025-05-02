@@ -10,13 +10,6 @@ export const GlobalStyles = createGlobalStyle`
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'FiraGo';
-    src: url("/fonts/FiraGo-Medium.woff2") format("woff2"),
-    url("/fonts/FiraGo-Medium.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
-}
 
 *{
     margin: 0;

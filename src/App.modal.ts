@@ -1,3 +1,10 @@
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  UseFormWatch,
+} from "react-hook-form";
+
 export interface ButtonProps {
   text: string;
   background?: boolean;
@@ -10,8 +17,24 @@ export interface RadioButtonProps {
 
 export interface InputProps {
   label: string;
+  register: UseFormRegister<FieldValues>;
+  watch: UseFormWatch<FieldValues>;
+  errors: FieldErrors<FieldValues>;
+  errorText: string;
+  validate: object;
 }
 
 export interface SelectProps {
   label: string;
 }
+
+export type RegionType = {
+  id: number;
+  name: string;
+};
+
+export type CityType = {
+  id: number;
+  name: string;
+  region_id: number;
+};

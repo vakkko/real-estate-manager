@@ -4,7 +4,6 @@ import Agreement from "./Agreement/Agreement";
 import Description from "./Description/Description";
 import FlatDetails from "./FlatDetails/FlatDetails";
 import Placing from "./Placing/Placing";
-
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
 
 export default function AddListing() {
