@@ -32,3 +32,23 @@ export const UploadIcon = styled.div`
     cursor: pointer;
   }
 `;
+
+export const PhotoContainer = styled.div`
+  margin-bottom: 2rem;
+`;
+
+export const UploadedContainer = styled.div`
+  position: relative;
+
+  & > img {
+    width: 9.2rem;
+    height: 8.2rem;
+    border-radius: 6px;
+  }
+
+  & > button {
+    position: absolute;
+    bottom: -0.8rem;
+    right: -1rem;
+  }
+`;

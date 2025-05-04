@@ -26,6 +26,7 @@ export interface InputProps {
 
 export interface SelectProps {
   label: string;
+  data?: RegionType[] | CityType[];
 }
 
 export type RegionType = {

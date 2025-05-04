@@ -47,6 +47,10 @@ textarea{
     font-family: 'FiraGo', sans-serif;
 }
 
+select{
+    font-family: 'FiraGo', sans-serif;
+}
+
 :root{
     --lightGray: #DBDBDB;
     --darkBlue: #021526;

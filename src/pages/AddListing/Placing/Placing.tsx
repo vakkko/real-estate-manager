@@ -2,6 +2,8 @@ import Input from "../../../components/Input/Input";
 import Select from "../../../components/Select/Select";
 import { PlacingDiv } from "./placing.styled";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { LocationContext } from "../../../context/Contexts";
 
 export default function Placing() {
   const {
@@ -9,6 +11,7 @@ export default function Placing() {
     watch,
     formState: { errors },
   } = useForm({ mode: "onChange" });
+  const contextData = useContext(LocationContext);
 
   return (
     <PlacingDiv>
@@ -37,8 +40,12 @@ export default function Placing() {
           }}
         />
 
-        <Select label="რეგიონი" />
-        <Select label="ქალაქი" />
+        {contextData && (
+          <>
+            <Select data={contextData[0]} label="რეგიონი" />
+            <Select data={contextData[1]} label="ქალაქი" />
+          </>
+        )}
       </div>
     </PlacingDiv>
   );

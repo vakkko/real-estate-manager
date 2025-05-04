@@ -5,27 +5,31 @@ import { RegionType, CityType } from "./App.modal";
 import { LocationContext } from "./context/Contexts";
 
 function App() {
-  const [locationData, setLocationData] = useState<RegionType[] & CityType[]>();
+  const [locationData, setLocationData] =
+    useState<[RegionType[], CityType[]]>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await Promise.all([
           fetch(
-            "https://api.real-estate-manager.redberryinternship.ge/api/cities"
+            " https://api.real-estate-manager.redberryinternship.ge/api/regions"
           ),
           fetch(
-            " https://api.real-estate-manager.redberryinternship.ge/api/regions"
+            "https://api.real-estate-manager.redberryinternship.ge/api/cities"
           ),
         ]);
 
-        const data = await Promise.all(
+        const data = (await Promise.all(
           response.map((res) => {
             if (!res.ok) throw new Error("Failed to fetch data");
             return res.json();
           })
-        );
-        setLocationData(data);
+        )) as [RegionType[], CityType[]];
+
+        const [regions, cities] = data;
+
+        setLocationData([regions, cities]);
       } catch (error) {
         console.error(error);
       }
