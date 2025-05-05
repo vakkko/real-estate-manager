@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 import {
   FieldErrors,
   FieldValues,
@@ -27,6 +29,7 @@ export interface InputProps {
 export interface SelectProps {
   label: string;
   data?: RegionType[] | CityType[];
+  setRegion?: Dispatch<SetStateAction<number | undefined>>;
 }
 
 export type RegionType = {
@@ -39,3 +42,10 @@ export type CityType = {
   name: string;
   region_id: number;
 };
+
+export interface ErrorMessageProps {
+  watch: UseFormWatch<FieldValues>;
+  errors: FieldErrors<FieldValues>;
+  errorText: string;
+  label: string;
+}

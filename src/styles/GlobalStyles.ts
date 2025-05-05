@@ -49,13 +49,17 @@ textarea{
 
 select{
     font-family: 'FiraGo', sans-serif;
+    cursor: pointer;
 }
+
+
 
 :root{
     --lightGray: #DBDBDB;
     --darkBlue: #021526;
-    --orange: #F93B1D;
+    --red: #F93B1D;
     --gray: #808A93;
+    --green: #45A849;
 }
 
 `;

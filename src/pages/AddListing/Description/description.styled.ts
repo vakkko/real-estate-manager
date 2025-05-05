@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DescriptionDiv = styled.div`
+export const DescriptionDiv = styled.div<{ $count: number }>`
   margin: 2rem 0;
 
   textarea {
@@ -11,6 +11,23 @@ export const DescriptionDiv = styled.div`
     font-size: 1.6rem;
     line-height: 100%;
     padding: 1rem;
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  & > div > p {
+    font-size: 1.4rem;
+    line-height: 100%;
+    color: ${(props) =>
+      props.$count > 0 && props.$count < 5
+        ? "var(--red)"
+        : props.$count >= 5
+        ? "var(--green)"
+        : ""};
   }
 `;
 
