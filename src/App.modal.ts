@@ -1,16 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 
-import {
-  FieldErrors,
-  FieldValues,
-  UseFormRegister,
-  UseFormWatch,
-} from "react-hook-form";
+import { FieldErrors, FieldValues, UseFormWatch } from "react-hook-form";
 
 export interface ButtonProps {
   text: string;
   background?: boolean;
   symbol?: boolean;
+  handleClick?: () => void;
 }
 
 export interface RadioButtonProps {
@@ -19,9 +15,6 @@ export interface RadioButtonProps {
 
 export interface InputProps {
   label: string;
-  register: UseFormRegister<FieldValues>;
-  watch: UseFormWatch<FieldValues>;
-  errors: FieldErrors<FieldValues>;
   errorText: string;
   validate: object;
 }
@@ -48,4 +41,8 @@ export interface ErrorMessageProps {
   errors: FieldErrors<FieldValues>;
   errorText: string;
   label: string;
+}
+
+export interface AgentModalProps {
+  handleCloseClick: () => void;
 }

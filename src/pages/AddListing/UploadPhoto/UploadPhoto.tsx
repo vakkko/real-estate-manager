@@ -6,7 +6,7 @@ import {
   UploadedContainer,
 } from "./uploadPhoto.styled";
 
-export default function UploadPhoto() {
+export default function UploadPhoto({ gridItem }: { gridItem?: boolean }) {
   const [file, setFile] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +19,7 @@ export default function UploadPhoto() {
   };
 
   return (
-    <PhotoContainer>
+    <PhotoContainer $gridItem={gridItem}>
       <CardTitle>ატვირთეთ ფოტო *</CardTitle>
       <UploadIcon>
         {!file ? (

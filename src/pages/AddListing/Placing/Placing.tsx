@@ -1,16 +1,10 @@
 import Input from "../../../components/Input/Input";
 import Select from "../../../components/Select/Select";
 import { PlacingDiv } from "./placing.styled";
-import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { LocationContext } from "../../../context/Contexts";
 
 export default function Placing() {
-  const {
-    register,
-    watch,
-    formState: { errors },
-  } = useForm({ mode: "onChange" });
   const contextData = useContext(LocationContext);
   const [region, setRegion] = useState<number>();
   return (
@@ -19,9 +13,6 @@ export default function Placing() {
       <div>
         <Input
           label="მისამართი *"
-          register={register}
-          watch={watch}
-          errors={errors}
           errorText="მინიმუმ 2 სიმბოლო"
           validate={{
             minLength: 2,
@@ -30,9 +21,6 @@ export default function Placing() {
         />
         <Input
           label="საფოსტო ინდექსი *"
-          register={register}
-          watch={watch}
-          errors={errors}
           errorText="მხოლოდ რიცხვები"
           validate={{
             pattern: { value: /^[0-9]+$/ },

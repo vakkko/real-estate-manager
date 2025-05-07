@@ -33,8 +33,9 @@ export const UploadIcon = styled.div`
   }
 `;
 
-export const PhotoContainer = styled.div`
+export const PhotoContainer = styled.div<{ $gridItem: boolean | undefined }>`
   margin-bottom: 2rem;
+  ${(props) => props.$gridItem && `grid-column : span 2`}
 `;
 
 export const UploadedContainer = styled.div`

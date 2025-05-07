@@ -1,15 +1,14 @@
+import { useForm } from "react-hook-form";
 import { InputProps } from "../../App.modal";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import { Label } from "./input.styled";
 
-export default function Input({
-  label,
-  register,
-  watch,
-  errors,
-  errorText,
-  validate,
-}: InputProps) {
+export default function Input({ label, errorText, validate }: InputProps) {
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useForm({ mode: "onChange" });
   return (
     <div>
       <Label>
