@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { UploadPhotoProps } from "../../../App.modal";
 import { CardTitle } from "../Description/description.styled";
 import {
   PhotoContainer,
@@ -6,35 +6,29 @@ import {
   UploadedContainer,
 } from "./uploadPhoto.styled";
 
-export default function UploadPhoto({ gridItem }: { gridItem?: boolean }) {
-  const [file, setFile] = useState<string>("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    if (selectedFile) setFile(URL.createObjectURL(selectedFile));
-  };
-
-  const handleClick = () => {
-    setFile("");
-  };
-
+export default function UploadPhoto({
+  gridItem,
+  preview,
+  handleFileChange,
+  handleRemove,
+}: UploadPhotoProps) {
   return (
     <PhotoContainer $gridItem={gridItem}>
       <CardTitle>ატვირთეთ ფოტო *</CardTitle>
       <UploadIcon>
-        {!file ? (
+        {!preview ? (
           <button>
             <img src="./assets/plus-circle.svg" alt="plus circle" />
             <input
-              onChange={handleChange}
+              onChange={handleFileChange}
               type="file"
               aria-label="upload photo"
             />
           </button>
         ) : (
           <UploadedContainer>
-            <img src={file} alt="listing" />
-            <button onClick={handleClick}>
+            <img src={preview} alt="listing" />
+            <button onClick={handleRemove}>
               <img src="./assets/delete-icon.svg" alt="delete-icon" />
             </button>
           </UploadedContainer>

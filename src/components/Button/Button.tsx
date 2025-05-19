@@ -10,7 +10,7 @@ export default function Button({
   return (
     <>
       <StyledButton
-        onClick={handleClick && handleClick}
+        onClick={handleClick}
         $symbol={symbol}
         $background={background}
       >

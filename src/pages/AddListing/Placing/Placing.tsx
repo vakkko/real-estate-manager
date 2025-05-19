@@ -3,10 +3,18 @@ import Select from "../../../components/Select/Select";
 import { PlacingDiv } from "./placing.styled";
 import { useContext, useState } from "react";
 import { LocationContext } from "../../../context/Contexts";
+import { useForm } from "react-hook-form";
 
 export default function Placing() {
   const contextData = useContext(LocationContext);
   const [region, setRegion] = useState<number>();
+
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useForm({ mode: "onChange" });
+
   return (
     <PlacingDiv>
       <h2>მდებარეობა</h2>
@@ -18,6 +26,9 @@ export default function Placing() {
             minLength: 2,
             required: true,
           }}
+          register={register}
+          watch={watch}
+          errors={errors}
         />
         <Input
           label="საფოსტო ინდექსი *"
@@ -26,6 +37,9 @@ export default function Placing() {
             pattern: { value: /^[0-9]+$/ },
             required: true,
           }}
+          register={register}
+          watch={watch}
+          errors={errors}
         />
 
         {contextData && (

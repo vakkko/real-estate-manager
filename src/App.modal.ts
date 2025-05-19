@@ -1,6 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { FieldErrors, FieldValues, UseFormWatch } from "react-hook-form";
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  UseFormWatch,
+} from "react-hook-form";
 
 export interface ButtonProps {
   text: string;
@@ -17,6 +22,9 @@ export interface InputProps {
   label: string;
   errorText: string;
   validate: object;
+  register: UseFormRegister<FieldValues>;
+  watch: UseFormWatch<FieldValues>;
+  errors: FieldErrors<FieldValues>;
 }
 
 export interface SelectProps {
@@ -45,4 +53,11 @@ export interface ErrorMessageProps {
 
 export interface AgentModalProps {
   handleCloseClick: () => void;
+}
+
+export interface UploadPhotoProps {
+  gridItem?: boolean;
+  preview: string;
+  handleRemove: () => void;
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
