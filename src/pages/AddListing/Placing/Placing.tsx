@@ -3,17 +3,12 @@ import Select from "../../../components/Select/Select";
 import { PlacingDiv } from "./placing.styled";
 import { useContext, useState } from "react";
 import { LocationContext } from "../../../context/Contexts";
-import { useForm } from "react-hook-form";
+import { PlacingProps } from "../../../App.modal";
 
-export default function Placing() {
+export default function Placing({ register, watch, errors }: PlacingProps) {
   const contextData = useContext(LocationContext);
   const [region, setRegion] = useState<number>();
-
-  const {
-    register,
-    watch,
-    formState: { errors },
-  } = useForm({ mode: "onChange" });
+  const [city, setCity] = useState<number>();
 
   return (
     <PlacingDiv>
@@ -45,13 +40,14 @@ export default function Placing() {
         {contextData && (
           <>
             <Select
-              setRegion={setRegion}
+              setState={setRegion}
               data={contextData[0]}
               label="რეგიონი"
             />
             <Select
               data={contextData[1].filter((data) => region === data.region_id)}
               label="ქალაქი"
+              setState={setCity}
             />
           </>
         )}

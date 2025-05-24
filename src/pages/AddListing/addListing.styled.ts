@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ListingDiv = styled.div`
   width: 79rem;
   margin: 0 auto;
+  margin-bottom: 30rem;
 
   & > h1 {
     font-size: 3.2rem;

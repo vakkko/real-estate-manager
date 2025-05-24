@@ -1,7 +1,8 @@
+import { PlacingProps } from "../../../App.modal";
 import Input from "../../../components/Input/Input";
 import { PlacingDiv } from "../Placing/placing.styled";
 
-export default function FlatDetails() {
+export default function FlatDetails({ register, watch, errors }: PlacingProps) {
   return (
     <PlacingDiv>
       <h2>ბინის დეტალები</h2>
@@ -13,6 +14,9 @@ export default function FlatDetails() {
             pattern: { value: /^[0-9]+$/ },
             required: true,
           }}
+          register={register}
+          watch={watch}
+          errors={errors}
         />
         <Input
           label="ფართობი"
@@ -21,6 +25,9 @@ export default function FlatDetails() {
             pattern: { value: /^[0-9]+$/ },
             required: true,
           }}
+          register={register}
+          watch={watch}
+          errors={errors}
         />
         <Input
           label="საძინებლების რაოდენობა *"
@@ -29,6 +36,9 @@ export default function FlatDetails() {
             pattern: { value: /^[0-9]+$/ },
             required: true,
           }}
+          register={register}
+          watch={watch}
+          errors={errors}
         />
       </div>
     </PlacingDiv>

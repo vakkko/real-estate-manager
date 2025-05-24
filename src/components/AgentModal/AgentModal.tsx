@@ -9,6 +9,7 @@ import {
   ModalContainer,
 } from "./agentModal.styled";
 import { useForm } from "react-hook-form";
+import { token, agentsApi } from "../../constants/apiConstant";
 
 export default function AgentModal({ handleCloseClick }: AgentModalProps) {
   const {
@@ -55,19 +56,14 @@ export default function AgentModal({ handleCloseClick }: AgentModalProps) {
       formData.append("phone", phone);
       formData.append("avatar", file);
 
-      const token = "9ef3424b-6d25-4910-ba6e-8c44eb196660";
-
       try {
-        const response = await fetch(
-          "https://api.real-estate-manager.redberryinternship.ge/api/agents",
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            body: formData,
-          }
-        );
+        const response = await fetch(agentsApi, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        });
         if (response.status === 201) {
           reset();
           setPreview("");

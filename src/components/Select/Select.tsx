@@ -1,10 +1,10 @@
 import { SelectProps } from "../../App.modal";
 import { SelectDiv } from "./select.styled";
 
-export default function Select({ setRegion, label, data }: SelectProps) {
+export default function Select({ setState, label, data }: SelectProps) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = Number(e.target.value);
-    if (selected && setRegion) setRegion(selected);
+    if (selected && setState) setState(selected);
   };
   return (
     <SelectDiv>

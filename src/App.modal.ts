@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 import {
   FieldErrors,
@@ -16,6 +16,8 @@ export interface ButtonProps {
 
 export interface RadioButtonProps {
   text: string;
+  handleAgreement: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
 }
 
 export interface InputProps {
@@ -30,7 +32,7 @@ export interface InputProps {
 export interface SelectProps {
   label: string;
   data?: RegionType[] | CityType[];
-  setRegion?: Dispatch<SetStateAction<number | undefined>>;
+  setState?: Dispatch<SetStateAction<number | undefined>>;
 }
 
 export type RegionType = {
@@ -60,4 +62,32 @@ export interface UploadPhotoProps {
   preview: string;
   handleRemove: () => void;
   handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface AgreementProps {
+  handleAgreement: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface PlacingProps {
+  register: UseFormRegister<FieldValues>;
+  watch: UseFormWatch<FieldValues>;
+  errors: FieldErrors<FieldValues>;
+}
+
+export interface DescriptionProps {
+  description: string;
+  handleDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+export type AgentsType = {
+  id: number;
+  name: string;
+  surname: string;
+  avatar: string;
+};
+
+export interface AgentsProps {
+  agents: AgentsType[] | undefined;
+  selected: AgentsType | undefined;
+  setSelected: React.Dispatch<SetStateAction<AgentsType | undefined>>;
 }

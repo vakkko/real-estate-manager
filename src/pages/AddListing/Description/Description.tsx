@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { DescriptionDiv } from "./description.styled";
 import { CardTitle } from "./description.styled";
+import { DescriptionProps } from "../../../App.modal";
 
-export default function Description() {
-  const [description, setDescription] = useState<string>("");
+export default function Description({
+  description,
+  handleDescription,
+}: DescriptionProps) {
   const [count, setCount] = useState<number>(0);
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(e.target.value);
-  };
 
   useEffect(() => {
     const validate = description.trim().split(" ");
@@ -25,7 +24,7 @@ export default function Description() {
     <>
       <DescriptionDiv $count={count}>
         <CardTitle>აღწერა *</CardTitle>
-        <textarea onChange={handleChange} value={description}></textarea>
+        <textarea onChange={handleDescription} value={description}></textarea>
         <div>
           <svg
             width="11"
