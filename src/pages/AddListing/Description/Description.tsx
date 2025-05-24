@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { DescriptionDiv } from "./description.styled";
 import { CardTitle } from "./description.styled";
 import { DescriptionProps } from "../../../App.modal";
@@ -6,9 +6,9 @@ import { DescriptionProps } from "../../../App.modal";
 export default function Description({
   description,
   handleDescription,
+  count,
+  setCount,
 }: DescriptionProps) {
-  const [count, setCount] = useState<number>(0);
-
   useEffect(() => {
     const validate = description.trim().split(" ");
     let result = 0;

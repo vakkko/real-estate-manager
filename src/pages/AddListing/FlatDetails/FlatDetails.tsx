@@ -1,8 +1,12 @@
-import { PlacingProps } from "../../../App.modal";
+import { FlatDetailsProps } from "../../../App.modal";
 import Input from "../../../components/Input/Input";
 import { PlacingDiv } from "../Placing/placing.styled";
 
-export default function FlatDetails({ register, watch, errors }: PlacingProps) {
+export default function FlatDetails({
+  register,
+  watch,
+  errors,
+}: FlatDetailsProps) {
   return (
     <PlacingDiv>
       <h2>ბინის დეტალები</h2>

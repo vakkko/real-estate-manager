@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const AgentsBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 38.4rem;
-
+  margin-bottom: 30rem;
+  position: relative;
   & img {
     width: 30px;
     height: 30px;
@@ -26,6 +26,7 @@ export const AgentOption = styled.div<{ $showAgent: boolean }>`
   cursor: pointer;
   padding: 1rem;
   border: 1px solid black;
+  width: 38.4rem;
   ${(props) =>
     props.$showAgent &&
     `border-top: none
@@ -39,7 +40,7 @@ export const EmptyValue = styled.div<{ $selected: boolean }>`
   align-items: center;
   padding: 1rem;
   cursor: pointer;
-
+  width: 38.4rem;
   ${(props) =>
     props.$selected &&
     `
@@ -49,4 +50,13 @@ export const EmptyValue = styled.div<{ $selected: boolean }>`
   & > span {
     font-size: 1.8rem;
   }
+`;
+
+export const ButtonsDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  position: absolute;
+  top: 19rem;
+  right: 0;
 `;

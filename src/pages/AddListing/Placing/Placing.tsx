@@ -1,14 +1,19 @@
 import Input from "../../../components/Input/Input";
 import Select from "../../../components/Select/Select";
 import { PlacingDiv } from "./placing.styled";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { LocationContext } from "../../../context/Contexts";
 import { PlacingProps } from "../../../App.modal";
 
-export default function Placing({ register, watch, errors }: PlacingProps) {
+export default function Placing({
+  register,
+  watch,
+  errors,
+  setCity,
+  setRegion,
+  region,
+}: PlacingProps) {
   const contextData = useContext(LocationContext);
-  const [region, setRegion] = useState<number>();
-  const [city, setCity] = useState<number>();
 
   return (
     <PlacingDiv>

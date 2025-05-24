@@ -72,11 +72,22 @@ export interface PlacingProps {
   register: UseFormRegister<FieldValues>;
   watch: UseFormWatch<FieldValues>;
   errors: FieldErrors<FieldValues>;
+  setCity: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setRegion: React.Dispatch<React.SetStateAction<number | undefined>>;
+  region: number | undefined;
+}
+
+export interface FlatDetailsProps {
+  register: UseFormRegister<FieldValues>;
+  watch: UseFormWatch<FieldValues>;
+  errors: FieldErrors<FieldValues>;
 }
 
 export interface DescriptionProps {
   description: string;
   handleDescription: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export type AgentsType = {
@@ -90,4 +101,5 @@ export interface AgentsProps {
   agents: AgentsType[] | undefined;
   selected: AgentsType | undefined;
   setSelected: React.Dispatch<SetStateAction<AgentsType | undefined>>;
+  handleSubmit: () => void;
 }
