@@ -3,6 +3,7 @@ import { AgentsProps, AgentsType } from "../../../App.modal";
 import { AgentsBox, AgentOption, EmptyValue } from "./agent.styled";
 import Button from "../../../components/Button/Button";
 import { ButtonsDiv } from "./agent.styled";
+import { Link } from "react-router";
 
 export default function Agent({
   agents,
@@ -64,7 +65,9 @@ export default function Agent({
           </AgentOption>
         ))}
       <ButtonsDiv>
-        <Button text="გაუქმება" />
+        <Link to={"/"}>
+          <Button text="გაუქმება" />
+        </Link>
         <Button handleClick={handleSubmit} text="დაამატე ლისტინგი" background />
       </ButtonsDiv>
     </AgentsBox>
