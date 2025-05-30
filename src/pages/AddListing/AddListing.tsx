@@ -9,6 +9,7 @@ import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import { useForm } from "react-hook-form";
 import { token, agentsApi, realEstate } from "../../constants/apiConstant";
 import { AgentsType } from "../../App.modal";
+import { useNavigate } from "react-router";
 
 export default function AddListing() {
   const [type, setType] = useState<string | undefined>("");
@@ -26,6 +27,7 @@ export default function AddListing() {
     reset,
     formState: { errors },
   } = useForm({ mode: "onChange" });
+  const navigate = useNavigate();
 
   const addrress = watch("მისამართი *");
   const zipCode = watch("საფოსტო ინდექსი *");
@@ -117,6 +119,7 @@ export default function AddListing() {
         setCity(undefined);
         setRegion(undefined);
         setSelected(undefined);
+        navigate("/");
       } catch (error) {
         console.error(error);
       }

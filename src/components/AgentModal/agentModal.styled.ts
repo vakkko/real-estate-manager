@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`
-  margin: 0 auto;
   padding: 8.7rem 10.8rem;
   max-width: 52.5%;
+  position: absolute;
+  background-color: white;
+  top: 14.8rem;
+  right: 25%;
 
   & > h1 {
     font-size: 3.2rem;

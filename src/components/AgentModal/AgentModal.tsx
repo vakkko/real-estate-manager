@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AgentModalProps } from "../../App.modal";
 import UploadPhoto from "../../pages/AddListing/UploadPhoto/UploadPhoto";
 import Button from "../Button/Button";
@@ -11,7 +11,10 @@ import {
 import { useForm } from "react-hook-form";
 import { token, agentsApi } from "../../constants/apiConstant";
 
-export default function AgentModal({ handleCloseClick }: AgentModalProps) {
+export default function AgentModal({
+  handleCloseClick,
+  showModal,
+}: AgentModalProps) {
   const {
     register,
     watch,
@@ -21,6 +24,8 @@ export default function AgentModal({ handleCloseClick }: AgentModalProps) {
 
   const [preview, setPreview] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
+
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -34,6 +39,21 @@ export default function AgentModal({ handleCloseClick }: AgentModalProps) {
   const handleRemove = () => {
     setPreview("");
   };
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        handleCloseClick();
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  });
+
+  if (!showModal) return null;
 
   const name = watch("სახელი*");
   const surName = watch("გვარი*");
@@ -76,7 +96,7 @@ export default function AgentModal({ handleCloseClick }: AgentModalProps) {
   };
 
   return (
-    <ModalContainer>
+    <ModalContainer ref={modalRef}>
       <h1>აგენტის დამატება</h1>
       <InputContainer>
         <Input

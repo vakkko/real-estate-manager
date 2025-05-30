@@ -23,6 +23,7 @@ html{
 
 body{
     font-family: 'FiraGo', sans-serif;
+    position: relative;
 }
 
 button{

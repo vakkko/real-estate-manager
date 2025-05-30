@@ -57,7 +57,10 @@ export default function Filter() {
           <Button handleClick={handleClick} symbol text="აგენტის დამატება" />
           {showModal &&
             createPortal(
-              <AgentModal handleCloseClick={handleCloseClick} />,
+              <AgentModal
+                showModal={showModal}
+                handleCloseClick={handleCloseClick}
+              />,
               document.body
             )}
         </ButtonsDiv>

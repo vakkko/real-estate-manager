@@ -55,6 +55,7 @@ export interface ErrorMessageProps {
 
 export interface AgentModalProps {
   handleCloseClick: () => void;
+  showModal: boolean;
 }
 
 export interface UploadPhotoProps {
