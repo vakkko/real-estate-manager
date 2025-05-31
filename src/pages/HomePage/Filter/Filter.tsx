@@ -1,12 +1,19 @@
 import { Link } from "react-router";
 import Button from "../../../components/Button/Button";
 import { ButtonsDiv, FilterDiv, FilterOptions } from "./filter.styled";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AgentModal from "../../../components/AgentModal/AgentModal.tsx";
 import { createPortal } from "react-dom";
+import FilterBy from "./FilterBy/FilterBy.tsx";
+import { LocationContext } from "../../../context/Contexts.ts";
+import { CityType, RegionType } from "../../../App.modal.ts";
 
 export default function Filter() {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const contextData: [RegionType[], CityType[]] | undefined =
+    useContext(LocationContext);
+
+  const [showRegion, setShowRegion] = useState<boolean>(false);
 
   const handleClick: () => void = () => {
     setShowModal((prev) => !prev);
@@ -33,10 +40,16 @@ export default function Filter() {
     <>
       <FilterDiv>
         <FilterOptions>
-          <button>
+          <button onClick={() => setShowRegion(!showRegion)}>
             რეგიონი
             <img src="./assets/down-arrow.svg" alt="down-arrow" />
           </button>
+          {showRegion && (
+            <FilterBy
+              heading="რეგიონის მიხედვით"
+              regions={contextData && contextData[0]}
+            />
+          )}
           <button>
             საფასო კატეგორია
             <img src="./assets/down-arrow.svg" alt="down-arrow" />

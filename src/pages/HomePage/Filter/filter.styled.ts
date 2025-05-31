@@ -12,6 +12,7 @@ export const FilterOptions = styled.div`
   border-radius: 10px;
   padding: 1.4rem 2rem;
   width: fit-content;
+  position: relative;
 
   & > button {
     display: flex;
