@@ -129,3 +129,11 @@ export interface FlatDetails {
 export interface FlatProps {
   flatDetails: FlatDetails[] | undefined;
 }
+
+export interface RangesProps {
+  range: string[];
+  rangeName: string;
+  fromTo: string;
+  state: string | undefined;
+  setState: React.Dispatch<React.SetStateAction<string | undefined>>;
+}

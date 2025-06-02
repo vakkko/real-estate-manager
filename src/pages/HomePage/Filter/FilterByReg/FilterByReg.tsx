@@ -1,8 +1,8 @@
 import { RegionType } from "../../../../App.modal";
 import Button from "../../../../components/Button/Button";
-import { FilterOptionsContainer, OptionsList } from "./filterBy.styled";
+import { FilterOptionsContainer, OptionsList } from "./filterByReg.styled";
 
-export default function FilterBy({
+export default function FilterByReg({
   regions,
   heading,
 }: {
@@ -15,8 +15,8 @@ export default function FilterBy({
       <OptionsList>
         {regions?.map((region) => (
           <div key={region.id}>
-            <input type="checkbox" name={region.name} value={region.name} />
-            <label>{region.name}</label>
+            <input type="checkbox" id={region.name} value={region.id} />
+            <label htmlFor={region.name}>{region.name}</label>
           </div>
         ))}
       </OptionsList>

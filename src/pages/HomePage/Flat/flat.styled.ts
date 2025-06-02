@@ -25,9 +25,8 @@ export const SaleType = styled.span`
   background-color: var(--darkGradient);
   border-radius: 15px;
   padding: 6px;
-  font-size: 12px;
+  font-size: 1.2rem;
   line-height: 100%;
-  letter-spacing: 4%;
   position: absolute;
   top: 2.3rem;
   left: 2.3rem;

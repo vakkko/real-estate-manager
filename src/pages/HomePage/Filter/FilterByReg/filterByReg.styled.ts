@@ -39,4 +39,14 @@ export const OptionsList = styled.div`
   grid-row-gap: 2rem;
   grid-column-gap: 9.5rem;
   align-items: center;
+  cursor: pointer;
+
+  & input[type="checkbox"] {
+    accent-color: var(--green);
+  }
+
+  & input,
+  & label {
+    cursor: pointer;
+  }
 `;
