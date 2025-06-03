@@ -13,12 +13,14 @@ import FilterByReg from "./FilterByReg/FilterByReg.tsx";
 import { LocationContext } from "../../../context/Contexts.ts";
 import { CityType, RegionType } from "../../../App.modal.ts";
 import FilterByPrc from "./FilterByPrc/FilterByPrc.tsx";
+import FilterByRooms from "./FilterByRooms/FilterByRooms.tsx";
 
 export default function Filter() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showRegion, setShowRegion] = useState<boolean>(false);
   const [showPrice, setShowPrice] = useState<boolean>(false);
   const [showArea, setShowArea] = useState<boolean>(false);
+  const [showRoom, setShowRoom] = useState<boolean>(false);
   const contextData: [RegionType[], CityType[]] | undefined =
     useContext(LocationContext);
 
@@ -57,18 +59,28 @@ export default function Filter() {
     setShowRegion(!showRegion);
     setShowPrice(false);
     setShowArea(false);
+    setShowRoom(false);
   };
 
   const handlePrcClick: () => void = () => {
     setShowPrice(!showPrice);
     setShowRegion(false);
     setShowArea(false);
+    setShowRoom(false);
   };
 
   const handleAreaClick: () => void = () => {
     setShowArea(!showArea);
     setShowRegion(false);
     setShowPrice(false);
+    setShowRoom(false);
+  };
+
+  const handleRoomClick: () => void = () => {
+    setShowRoom(!showRoom);
+    setShowRegion(false);
+    setShowPrice(false);
+    setShowArea(false);
   };
 
   return (
@@ -108,10 +120,11 @@ export default function Filter() {
               by="ფართობის მიხედვით"
             />
           )}
-          <OptionButton>
+          <OptionButton $active={showRoom} onClick={handleRoomClick}>
             საძინებლების რაოდენობა
             <img src="./assets/down-arrow.svg" alt="down-arrow" />
           </OptionButton>
+          {showRoom && <FilterByRooms />}
         </FilterOptions>
         <ButtonsDiv>
           <Link to={"/add-listing"}>

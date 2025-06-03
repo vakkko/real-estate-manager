@@ -63,6 +63,8 @@ select{
     --green: #45A849;
     --darkGradient: #02152680;
     --backgroundGray: #F3F3F3;
+    --roomBtnColor:#02152666;
+    --roomBtnBorder:#808A93;
 }
 
 `;
