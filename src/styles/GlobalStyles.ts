@@ -62,7 +62,7 @@ select{
     --gray: #808A93;
     --green: #45A849;
     --darkGradient: #02152680;
-  
+    --backgroundGray: #F3F3F3;
 }
 
 `;

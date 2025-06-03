@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FilterOptionsContainer = styled.div`
   position: absolute;
   z-index: 2;
-  top: 6rem;
+  top: 7rem;
   left: 0rem;
   background-color: white;
   border: 1px solid var(--lightGray);

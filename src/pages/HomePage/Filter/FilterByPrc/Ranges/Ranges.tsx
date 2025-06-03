@@ -26,7 +26,7 @@ export default function Ranges({
       <h4>{rangeName}</h4>
       {range.map((rng, i) => (
         <p onClick={() => setState(rng)} key={i}>
-          {rng} ₾
+          {rng}
         </p>
       ))}
     </RangeBox>

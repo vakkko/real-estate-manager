@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const FilterBox = styled.div`
+export const FilterBox = styled.div<{ $showArea: boolean | undefined }>`
   position: absolute;
-  top: 6rem;
-  left: 12rem;
+  top: 7rem;
+  left: ${(props) => (props.$showArea ? "37rem" : "15.5rem")};
   z-index: 2;
   background-color: white;
   border: 1px solid var(--lightGray);

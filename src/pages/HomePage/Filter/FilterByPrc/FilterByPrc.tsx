@@ -2,26 +2,36 @@ import { useState } from "react";
 import { FilterBox } from "./filterByPrc.styled";
 import Ranges from "./Ranges/Ranges";
 
-export default function FilterByPrc({ range }: { range: string[] }) {
+export default function FilterByPrc({
+  range,
+  rangeNames,
+  by,
+  showArea,
+}: {
+  range: string[];
+  rangeNames: string[];
+  by: string;
+  showArea?: boolean | undefined;
+}) {
   const [min, setMin] = useState<string>();
   const [max, setMax] = useState<string>();
 
   return (
-    <FilterBox>
-      <h3>ფასის მიხედვით</h3>
+    <FilterBox $showArea={showArea}>
+      <h3>{by}</h3>
       <div>
         <Ranges
           setState={setMin}
           state={min}
           fromTo="დან"
-          rangeName="მინ. ფასი"
+          rangeName={rangeNames[0]}
           range={range}
         />
         <Ranges
           state={max}
           setState={setMax}
           fromTo="მდე"
-          rangeName="მაქს. ფასი"
+          rangeName={rangeNames[1]}
           range={range}
         />
       </div>

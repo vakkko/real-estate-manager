@@ -1,6 +1,11 @@
 import { Link } from "react-router";
 import Button from "../../../components/Button/Button";
-import { ButtonsDiv, FilterDiv, FilterOptions } from "./filter.styled";
+import {
+  ButtonsDiv,
+  FilterDiv,
+  FilterOptions,
+  OptionButton,
+} from "./filter.styled";
 import { useContext, useState } from "react";
 import AgentModal from "../../../components/AgentModal/AgentModal.tsx";
 import { createPortal } from "react-dom";
@@ -13,16 +18,19 @@ export default function Filter() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showRegion, setShowRegion] = useState<boolean>(false);
   const [showPrice, setShowPrice] = useState<boolean>(false);
+  const [showArea, setShowArea] = useState<boolean>(false);
   const contextData: [RegionType[], CityType[]] | undefined =
     useContext(LocationContext);
 
   const priceRange: string[] = [
-    "50000",
-    "100000",
-    "150000",
-    "200000",
-    "300000",
+    "50000 ₾",
+    "100000 ₾",
+    "150000 ₾",
+    "200000 ₾",
+    "300000 ₾",
   ];
+
+  const areaRange: string[] = ["50 მ²", "100 მ²", "150 მ²", "200 მ²", "250 მ²"];
 
   const handleClick: () => void = () => {
     setShowModal((prev) => !prev);
@@ -48,54 +56,62 @@ export default function Filter() {
   const handleRegClick: () => void = () => {
     setShowRegion(!showRegion);
     setShowPrice(false);
+    setShowArea(false);
   };
 
   const handlePrcClick: () => void = () => {
     setShowPrice(!showPrice);
     setShowRegion(false);
+    setShowArea(false);
+  };
+
+  const handleAreaClick: () => void = () => {
+    setShowArea(!showArea);
+    setShowRegion(false);
+    setShowPrice(false);
   };
 
   return (
     <>
       <FilterDiv>
         <FilterOptions>
-          <button onClick={handleRegClick}>
+          <OptionButton $active={showRegion} onClick={handleRegClick}>
             რეგიონი
-            <img
-              style={{
-                transform: showRegion ? "rotate(180deg)" : "rotate(0deg)",
-                transition: "transform 0.2s ease",
-              }}
-              src="./assets/down-arrow.svg"
-              alt="down-arrow"
-            />
-          </button>
+            <img src="./assets/down-arrow.svg" alt="down-arrow" />
+          </OptionButton>
           {showRegion && (
             <FilterByReg
               heading="რეგიონის მიხედვით"
               regions={contextData && contextData[0]}
             />
           )}
-          <button onClick={handlePrcClick}>
+          <OptionButton $active={showPrice} onClick={handlePrcClick}>
             საფასო კატეგორია
-            <img
-              style={{
-                transform: showPrice ? "rotate(180deg)" : "rotate(0deg)",
-                transition: "transform 0.2s ease",
-              }}
-              src="./assets/down-arrow.svg"
-              alt="down-arrow"
+            <img src="./assets/down-arrow.svg" alt="down-arrow" />
+          </OptionButton>
+          {showPrice && (
+            <FilterByPrc
+              by="ფასის მიხედვით"
+              rangeNames={["მინ. ფასი", "მაქს.ფასი"]}
+              range={priceRange}
             />
-          </button>
-          {showPrice && <FilterByPrc range={priceRange} />}
-          <button>
+          )}
+          <OptionButton onClick={handleAreaClick} $active={showArea}>
             ფართობი
             <img src="./assets/down-arrow.svg" alt="down-arrow" />
-          </button>
-          <button>
+          </OptionButton>
+          {showArea && (
+            <FilterByPrc
+              showArea={showArea}
+              range={areaRange}
+              rangeNames={["მინ. მ²", "მაქს. მ²"]}
+              by="ფართობის მიხედვით"
+            />
+          )}
+          <OptionButton>
             საძინებლების რაოდენობა
             <img src="./assets/down-arrow.svg" alt="down-arrow" />
-          </button>
+          </OptionButton>
         </FilterOptions>
         <ButtonsDiv>
           <Link to={"/add-listing"}>
