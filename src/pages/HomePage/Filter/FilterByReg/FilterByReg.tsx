@@ -1,26 +1,41 @@
-import { RegionType } from "../../../../App.modal";
+import { FilterByRegProps } from "../../../../App.modal";
 import Button from "../../../../components/Button/Button";
 import { FilterOptionsContainer, OptionsList } from "./filterByReg.styled";
 
 export default function FilterByReg({
   regions,
   heading,
-}: {
-  regions: RegionType[] | undefined;
-  heading: string;
-}) {
+  region,
+  setRegion,
+  handleRegionClick,
+}: FilterByRegProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (e.target.checked) {
+      setRegion((prev) => [...prev, value]);
+    } else {
+      setRegion(region.filter((rg) => rg !== value));
+    }
+  };
+
   return (
     <FilterOptionsContainer>
       <h3>{heading}</h3>
       <OptionsList>
-        {regions?.map((region) => (
-          <div key={region.id}>
-            <input type="checkbox" id={region.name} value={region.id} />
-            <label htmlFor={region.name}>{region.name}</label>
+        {regions?.map((reg) => (
+          <div key={reg.id}>
+            <input
+              type="checkbox"
+              onChange={handleChange}
+              id={reg.name}
+              value={reg.id}
+              checked={region.includes(String(reg.id))}
+            />
+            <label htmlFor={reg.name}>{reg.name}</label>
           </div>
         ))}
       </OptionsList>
-      <Button background text="არჩევა" />
+      <Button handleClick={handleRegionClick} background text="არჩევა" />
     </FilterOptionsContainer>
   );
 }

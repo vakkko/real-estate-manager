@@ -9,11 +9,11 @@ import {
   SaleType,
 } from "./flat.styled";
 
-export default function Flat({ flatDetails }: FlatProps) {
+export default function Flat({ flatData }: FlatProps) {
   return (
     <FlatsContainer>
-      {flatDetails &&
-        flatDetails.map((flat) => (
+      {flatData &&
+        flatData.map((flat) => (
           <FlatContainer key={flat.id}>
             <SaleType>
               {flat.is_rental === 0 ? "ქირავდება" : "იყიდება"}

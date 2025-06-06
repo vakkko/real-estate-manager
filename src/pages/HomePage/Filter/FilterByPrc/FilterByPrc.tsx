@@ -1,21 +1,19 @@
-import { useState } from "react";
 import { FilterBox } from "./filterByPrc.styled";
 import Ranges from "./Ranges/Ranges";
+import { FilterByPrcProps } from "../../../../App.modal";
+import Button from "../../../../components/Button/Button";
 
 export default function FilterByPrc({
   range,
   rangeNames,
   by,
   showArea,
-}: {
-  range: string[];
-  rangeNames: string[];
-  by: string;
-  showArea?: boolean | undefined;
-}) {
-  const [min, setMin] = useState<string>();
-  const [max, setMax] = useState<string>();
-
+  min,
+  setMin,
+  max,
+  setMax,
+  area,
+}: FilterByPrcProps) {
   return (
     <FilterBox $showArea={showArea}>
       <h3>{by}</h3>
@@ -26,6 +24,7 @@ export default function FilterByPrc({
           fromTo="დან"
           rangeName={rangeNames[0]}
           range={range}
+          area={area}
         />
         <Ranges
           state={max}
@@ -33,8 +32,10 @@ export default function FilterByPrc({
           fromTo="მდე"
           rangeName={rangeNames[1]}
           range={range}
+          area={area}
         />
       </div>
+      <Button text="არჩევა" background />
     </FilterBox>
   );
 }

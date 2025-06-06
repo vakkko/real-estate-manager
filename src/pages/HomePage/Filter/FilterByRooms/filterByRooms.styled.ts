@@ -24,7 +24,7 @@ export const FilterByRoomsBox = styled.div`
     line-height: 100%;
   }
 
-  & > div > input {
+  & > div > button {
     font-size: 1.4rem;
     line-height: 100%;
     padding: 1rem;

@@ -127,13 +127,49 @@ export interface FlatDetails {
 }
 
 export interface FlatProps {
-  flatDetails: FlatDetails[] | undefined;
+  flatData: FlatDetails[] | undefined;
 }
 
 export interface RangesProps {
   range: string[];
   rangeName: string;
   fromTo: string;
-  state: string | undefined;
-  setState: React.Dispatch<React.SetStateAction<string | undefined>>;
+  state: string;
+  setState: React.Dispatch<React.SetStateAction<string>>;
+  area: boolean | undefined;
+}
+
+export interface FilterByPrcProps {
+  range: string[];
+  rangeNames: string[];
+  by: string;
+  showArea?: boolean | undefined;
+  min: string;
+  setMin: React.Dispatch<SetStateAction<string>>;
+  max: string;
+  setMax: React.Dispatch<SetStateAction<string>>;
+  area?: boolean | undefined;
+}
+
+export interface FilterProps {
+  region: string[];
+  setRegion: React.Dispatch<SetStateAction<string[]>>;
+  minPrc: string;
+  setMinPrc: React.Dispatch<SetStateAction<string>>;
+  maxPrc: string;
+  setMaxPrc: React.Dispatch<SetStateAction<string>>;
+  minArea: string;
+  setMinArea: React.Dispatch<SetStateAction<string>>;
+  maxArea: string;
+  setMaxArea: React.Dispatch<SetStateAction<string>>;
+  setRooms: React.Dispatch<SetStateAction<string>>;
+  handleRegionClick: () => void;
+}
+
+export interface FilterByRegProps {
+  regions: RegionType[] | undefined;
+  heading: string;
+  region: string[];
+  setRegion: React.Dispatch<React.SetStateAction<string[]>>;
+  handleRegionClick: () => void;
 }

@@ -20,12 +20,17 @@ export const RangeBox = styled.div`
     position: relative;
   }
 
-  & > div > img {
+  & > div > img,
+  & > div > span {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
     width: 8px;
     height: 14px;
+  }
+
+  & > div > span {
+    font-size: 1.3rem;
   }
 
   & > div > input {

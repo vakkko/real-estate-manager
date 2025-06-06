@@ -11,11 +11,24 @@ import AgentModal from "../../../components/AgentModal/AgentModal.tsx";
 import { createPortal } from "react-dom";
 import FilterByReg from "./FilterByReg/FilterByReg.tsx";
 import { LocationContext } from "../../../context/Contexts.ts";
-import { CityType, RegionType } from "../../../App.modal.ts";
+import { CityType, FilterProps, RegionType } from "../../../App.modal.ts";
 import FilterByPrc from "./FilterByPrc/FilterByPrc.tsx";
 import FilterByRooms from "./FilterByRooms/FilterByRooms.tsx";
 
-export default function Filter() {
+export default function Filter({
+  region,
+  setRegion,
+  minPrc,
+  setMinPrc,
+  maxPrc,
+  setMaxPrc,
+  minArea,
+  setMinArea,
+  maxArea,
+  setMaxArea,
+  setRooms,
+  handleRegionClick,
+}: FilterProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showRegion, setShowRegion] = useState<boolean>(false);
   const [showPrice, setShowPrice] = useState<boolean>(false);
@@ -95,6 +108,9 @@ export default function Filter() {
             <FilterByReg
               heading="რეგიონის მიხედვით"
               regions={contextData && contextData[0]}
+              region={region}
+              setRegion={setRegion}
+              handleRegionClick={handleRegionClick}
             />
           )}
           <OptionButton $active={showPrice} onClick={handlePrcClick}>
@@ -106,6 +122,10 @@ export default function Filter() {
               by="ფასის მიხედვით"
               rangeNames={["მინ. ფასი", "მაქს.ფასი"]}
               range={priceRange}
+              min={minPrc}
+              setMin={setMinPrc}
+              max={maxPrc}
+              setMax={setMaxPrc}
             />
           )}
           <OptionButton onClick={handleAreaClick} $active={showArea}>
@@ -118,13 +138,18 @@ export default function Filter() {
               range={areaRange}
               rangeNames={["მინ. მ²", "მაქს. მ²"]}
               by="ფართობის მიხედვით"
+              min={minArea}
+              setMin={setMinArea}
+              max={maxArea}
+              setMax={setMaxArea}
+              area
             />
           )}
           <OptionButton $active={showRoom} onClick={handleRoomClick}>
             საძინებლების რაოდენობა
             <img src="./assets/down-arrow.svg" alt="down-arrow" />
           </OptionButton>
-          {showRoom && <FilterByRooms />}
+          {showRoom && <FilterByRooms setRooms={setRooms} />}
         </FilterOptions>
         <ButtonsDiv>
           <Link to={"/add-listing"}>

@@ -17,6 +17,7 @@ export const FilterOptions = styled.div`
 
 export const ButtonsDiv = styled.div`
   display: flex;
+  align-items: center;
   gap: 1.6rem;
 `;
 
