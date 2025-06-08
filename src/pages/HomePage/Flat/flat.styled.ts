@@ -8,7 +8,6 @@ export const FlatsContainer = styled.div`
 
 export const FlatContainer = styled.div`
   position: relative;
-  margin-top: 3.2rem;
   border: 1px solid #dbdbdb;
 
   border-radius: 14px;

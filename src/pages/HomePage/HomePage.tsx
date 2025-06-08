@@ -15,6 +15,7 @@ export default function HomePage() {
   const [minArea, setMinArea] = useState<string>("");
   const [maxArea, setMaxArea] = useState<string>("");
   const [rooms, setRooms] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,12 +36,36 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  const handleRegionClick: () => void = () => {
+  const handleRegionFilter: () => void = () => {
     const regionIds = Object.values(region);
 
     if (regionIds.length > 0) {
-      const res = flatData?.filter((region) => {
-        return regionIds.includes(String(region.city.region_id));
+      const res = flatData?.filter((flat) => {
+        return regionIds.includes(String(flat.city.region_id));
+      });
+      setData(res);
+    }
+  };
+
+  const handlePrcFilter = () => {
+    if (
+      (Number(minPrc) > Number(maxPrc) && maxPrc !== "") ||
+      isNaN(Number(minPrc)) ||
+      isNaN(Number(maxPrc))
+    ) {
+      setError(true);
+      return;
+    } else {
+      const res = flatData?.filter((flat) => {
+        if (minPrc === "") {
+          return flat.price >= Number(maxPrc);
+        } else if (maxPrc === "") {
+          return flat.price <= Number(minPrc);
+        } else if (minPrc !== "" && maxPrc !== "") {
+          return flat.price >= Number(minPrc) && flat.price <= Number(maxPrc);
+        }
+
+        return true;
       });
       setData(res);
     }
@@ -60,9 +85,14 @@ export default function HomePage() {
         maxArea={maxArea}
         setMaxArea={setMaxArea}
         setRooms={setRooms}
-        handleRegionClick={handleRegionClick}
+        handleRegionFilter={handleRegionFilter}
+        handlePrcFilter={handlePrcFilter}
       />
-      <Flat flatData={data?.length ? data : flatData} />
+      {!error ? (
+        <Flat flatData={data?.length ? data : flatData} />
+      ) : (
+        <h1>გთხოვთ შეიყვანოთ ვალიდური ინფორმაცია</h1>
+      )}
     </Main>
   );
 }
