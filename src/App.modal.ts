@@ -150,6 +150,7 @@ export interface FilterByPrcProps {
   setMax: React.Dispatch<SetStateAction<string>>;
   area?: boolean | undefined;
   handlePrcFilter: () => void;
+  setShowPrice: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface FilterProps {
@@ -174,4 +175,5 @@ export interface FilterByRegProps {
   region: string[];
   setRegion: React.Dispatch<React.SetStateAction<string[]>>;
   handleRegionFilter: () => void;
+  setShowRegion: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -112,6 +112,7 @@ export default function Filter({
               region={region}
               setRegion={setRegion}
               handleRegionFilter={handleRegionFilter}
+              setShowRegion={setShowRegion}
             />
           )}
           <OptionButton $active={showPrice} onClick={handlePrcClick}>
@@ -128,6 +129,7 @@ export default function Filter({
               max={maxPrc}
               setMax={setMaxPrc}
               handlePrcFilter={handlePrcFilter}
+              setShowPrice={setShowPrice}
             />
           )}
           <OptionButton onClick={handleAreaClick} $active={showArea}>

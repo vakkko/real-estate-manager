@@ -8,6 +8,7 @@ export default function FilterByReg({
   region,
   setRegion,
   handleRegionFilter,
+  setShowRegion,
 }: FilterByRegProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -16,6 +17,11 @@ export default function FilterByReg({
     } else {
       setRegion(region.filter((rg) => rg !== value));
     }
+  };
+
+  const handleClick = () => {
+    setShowRegion(false);
+    handleRegionFilter();
   };
 
   return (
@@ -35,7 +41,7 @@ export default function FilterByReg({
           </div>
         ))}
       </OptionsList>
-      <Button handleClick={handleRegionFilter} background text="არჩევა" />
+      <Button handleClick={handleClick} background text="არჩევა" />
     </FilterOptionsContainer>
   );
 }

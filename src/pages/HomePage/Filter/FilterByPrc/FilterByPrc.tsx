@@ -14,7 +14,13 @@ export default function FilterByPrc({
   setMax,
   area,
   handlePrcFilter,
+  setShowPrice,
 }: FilterByPrcProps) {
+  const handleClick = () => {
+    setShowPrice(false);
+    handlePrcFilter();
+  };
+
   return (
     <FilterBox $showArea={showArea}>
       <h3>{by}</h3>
@@ -36,7 +42,7 @@ export default function FilterByPrc({
           area={area}
         />
       </div>
-      <Button handleClick={handlePrcFilter} text="არჩევა" background />
+      <Button handleClick={handleClick} text="არჩევა" background />
     </FilterBox>
   );
 }

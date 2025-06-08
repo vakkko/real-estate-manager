@@ -58,10 +58,13 @@ export default function HomePage() {
     } else {
       const res = flatData?.filter((flat) => {
         if (minPrc === "") {
+          setError(false);
           return flat.price >= Number(maxPrc);
         } else if (maxPrc === "") {
+          setError(false);
           return flat.price <= Number(minPrc);
         } else if (minPrc !== "" && maxPrc !== "") {
+          setError(false);
           return flat.price >= Number(minPrc) && flat.price <= Number(maxPrc);
         }
 
