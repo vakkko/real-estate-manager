@@ -166,8 +166,10 @@ export interface FilterProps {
   maxArea: string;
   setMaxArea: React.Dispatch<SetStateAction<string>>;
   setRooms: React.Dispatch<SetStateAction<string>>;
+  rooms: string;
   handleRegionFilter: () => void;
   handleRangeFilter: (min: string, max: string, key: keyof FlatDetails) => void;
+  handleRmsFilter: () => void;
 }
 
 export interface FilterByRegProps {

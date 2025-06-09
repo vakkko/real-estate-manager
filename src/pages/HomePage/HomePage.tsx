@@ -15,7 +15,7 @@ export default function HomePage() {
   const [minArea, setMinArea] = useState<string>("");
   const [maxArea, setMaxArea] = useState<string>("");
   const [rooms, setRooms] = useState<string>("");
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,25 +54,26 @@ export default function HomePage() {
   ) => void = (min, max, key) => {
     const minAmount = Number(min);
     const maxAmount = Number(max);
+    const errMsg = "გთხოვთ შეიყვანოთ ვალიდური რიცხვები";
 
     if (
       (minAmount > maxAmount && max !== "") ||
       isNaN(minAmount) ||
       isNaN(maxAmount)
     ) {
-      setError(true);
+      setError(errMsg);
       return;
     } else {
       const res = flatData?.filter((flat) => {
         if (typeof flat[key] !== "number") return false;
         if (min === "") {
-          setError(false);
+          setError("");
           return flat[key] >= maxAmount;
         } else if (max === "") {
-          setError(false);
+          setError("");
           return flat[key] <= minAmount;
         } else if (min !== "" && max !== "") {
-          setError(false);
+          setError("");
           return flat[key] >= minAmount && flat[key] <= maxAmount;
         }
 
@@ -80,6 +81,21 @@ export default function HomePage() {
       });
       setData(res);
     }
+  };
+
+  const handleRmsFilter: () => void = () => {
+    const errMsg = `ოთახის ამ რაოდენობით ბინა არ მოიძებნა`;
+    const room = Number(rooms);
+    const res = flatData?.filter((flat) => {
+      if (rooms === "8+") {
+        return flat.bedrooms >= 8;
+      }
+      return flat.bedrooms === room;
+    });
+    if (res?.length === 0) {
+      setError(errMsg);
+    }
+    setData(res);
   };
 
   return (
@@ -95,14 +111,16 @@ export default function HomePage() {
         setMinArea={setMinArea}
         maxArea={maxArea}
         setMaxArea={setMaxArea}
+        rooms={rooms}
         setRooms={setRooms}
         handleRegionFilter={handleRegionFilter}
         handleRangeFilter={handleRangeFilter}
+        handleRmsFilter={handleRmsFilter}
       />
-      {!error ? (
+      {error === "" ? (
         <Flat flatData={data?.length ? data : flatData} />
       ) : (
-        <h1>გთხოვთ შეიყვანოთ ვალიდური რიცხვები</h1>
+        <h1>{error}</h1>
       )}
     </Main>
   );

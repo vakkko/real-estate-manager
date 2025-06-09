@@ -24,20 +24,26 @@ export const FilterByRoomsBox = styled.div`
     line-height: 100%;
   }
 
-  & > div > button {
-    font-size: 1.4rem;
-    line-height: 100%;
-    padding: 1rem;
-    width: 41px;
-    color: var(--roomBtnColor);
-    border: 1px solid var(--roomBtnBorder);
-    text-align: center;
-    cursor: pointer;
-    border-radius: 6px;
-  }
-
   & > button {
     align-self: flex-end;
     padding: 0.8rem 1.4rem;
   }
+`;
+
+export const RoomBtn = styled.button<{ $active: boolean }>`
+  font-size: 1.4rem;
+  line-height: 100%;
+  padding: 1rem;
+  width: 41px;
+  color: var(--roomBtnColor);
+  border: 1px solid var(--roomBtnBorder);
+  text-align: center;
+  cursor: pointer;
+  border-radius: 6px;
+
+  ${(props) =>
+    props.$active && {
+      color: "white",
+      backgroundColor: "var(--roomBtnBorder)",
+    }}
 `;

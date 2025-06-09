@@ -27,8 +27,10 @@ export default function Filter({
   maxArea,
   setMaxArea,
   setRooms,
+  rooms,
   handleRegionFilter,
   handleRangeFilter,
+  handleRmsFilter,
 }: FilterProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showRegion, setShowRegion] = useState<boolean>(false);
@@ -157,7 +159,14 @@ export default function Filter({
             საძინებლების რაოდენობა
             <img src="./assets/down-arrow.svg" alt="down-arrow" />
           </OptionButton>
-          {showRoom && <FilterByRooms setRooms={setRooms} />}
+          {showRoom && (
+            <FilterByRooms
+              handleRmsFilter={handleRmsFilter}
+              setShowRoom={setShowRoom}
+              rooms={rooms}
+              setRooms={setRooms}
+            />
+          )}
         </FilterOptions>
         <ButtonsDiv>
           <Link to={"/add-listing"}>
