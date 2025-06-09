@@ -47,25 +47,33 @@ export default function HomePage() {
     }
   };
 
-  const handlePrcFilter = () => {
+  const handleRangeFilter: (
+    min: string,
+    max: string,
+    key: keyof FlatDetails
+  ) => void = (min, max, key) => {
+    const minAmount = Number(min);
+    const maxAmount = Number(max);
+
     if (
-      (Number(minPrc) > Number(maxPrc) && maxPrc !== "") ||
-      isNaN(Number(minPrc)) ||
-      isNaN(Number(maxPrc))
+      (minAmount > maxAmount && max !== "") ||
+      isNaN(minAmount) ||
+      isNaN(maxAmount)
     ) {
       setError(true);
       return;
     } else {
       const res = flatData?.filter((flat) => {
-        if (minPrc === "") {
+        if (typeof flat[key] !== "number") return false;
+        if (min === "") {
           setError(false);
-          return flat.price >= Number(maxPrc);
-        } else if (maxPrc === "") {
+          return flat[key] >= maxAmount;
+        } else if (max === "") {
           setError(false);
-          return flat.price <= Number(minPrc);
-        } else if (minPrc !== "" && maxPrc !== "") {
+          return flat[key] <= minAmount;
+        } else if (min !== "" && max !== "") {
           setError(false);
-          return flat.price >= Number(minPrc) && flat.price <= Number(maxPrc);
+          return flat[key] >= minAmount && flat[key] <= maxAmount;
         }
 
         return true;
@@ -89,12 +97,12 @@ export default function HomePage() {
         setMaxArea={setMaxArea}
         setRooms={setRooms}
         handleRegionFilter={handleRegionFilter}
-        handlePrcFilter={handlePrcFilter}
+        handleRangeFilter={handleRangeFilter}
       />
       {!error ? (
         <Flat flatData={data?.length ? data : flatData} />
       ) : (
-        <h1>გთხოვთ შეიყვანოთ ვალიდური ინფორმაცია</h1>
+        <h1>გთხოვთ შეიყვანოთ ვალიდური რიცხვები</h1>
       )}
     </Main>
   );

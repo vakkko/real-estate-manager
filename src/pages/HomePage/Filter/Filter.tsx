@@ -28,7 +28,7 @@ export default function Filter({
   setMaxArea,
   setRooms,
   handleRegionFilter,
-  handlePrcFilter,
+  handleRangeFilter,
 }: FilterProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showRegion, setShowRegion] = useState<boolean>(false);
@@ -128,8 +128,9 @@ export default function Filter({
               setMin={setMinPrc}
               max={maxPrc}
               setMax={setMaxPrc}
-              handlePrcFilter={handlePrcFilter}
+              handleRangeFilter={handleRangeFilter}
               setShowPrice={setShowPrice}
+              keys={"price"}
             />
           )}
           <OptionButton onClick={handleAreaClick} $active={showArea}>
@@ -146,7 +147,10 @@ export default function Filter({
               setMin={setMinArea}
               max={maxArea}
               setMax={setMaxArea}
+              handleRangeFilter={handleRangeFilter}
               area
+              setShowPrice={setShowArea}
+              keys={"area"}
             />
           )}
           <OptionButton $active={showRoom} onClick={handleRoomClick}>

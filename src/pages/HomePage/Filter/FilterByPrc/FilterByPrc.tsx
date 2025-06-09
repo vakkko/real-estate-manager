@@ -13,12 +13,13 @@ export default function FilterByPrc({
   max,
   setMax,
   area,
-  handlePrcFilter,
+  handleRangeFilter,
   setShowPrice,
+  keys,
 }: FilterByPrcProps) {
   const handleClick = () => {
     setShowPrice(false);
-    handlePrcFilter();
+    handleRangeFilter(min, max, keys);
   };
 
   return (

@@ -149,8 +149,9 @@ export interface FilterByPrcProps {
   max: string;
   setMax: React.Dispatch<SetStateAction<string>>;
   area?: boolean | undefined;
-  handlePrcFilter: () => void;
+  handleRangeFilter: (min: string, max: string, key: keyof FlatDetails) => void;
   setShowPrice: React.Dispatch<React.SetStateAction<boolean>>;
+  keys: keyof FlatDetails;
 }
 
 export interface FilterProps {
@@ -166,7 +167,7 @@ export interface FilterProps {
   setMaxArea: React.Dispatch<SetStateAction<string>>;
   setRooms: React.Dispatch<SetStateAction<string>>;
   handleRegionFilter: () => void;
-  handlePrcFilter: () => void;
+  handleRangeFilter: (min: string, max: string, key: keyof FlatDetails) => void;
 }
 
 export interface FilterByRegProps {
