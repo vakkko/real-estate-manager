@@ -4,18 +4,23 @@ import { Main } from "./homepage.styled";
 import { realEstate, token } from "../../constants/apiConstant";
 import Flat from "./Flat/Flat";
 import { FlatDetails } from "../../App.modal";
+import { getItem, setItem } from "../../utils/localStorage";
 
 export default function HomePage() {
   const [flatData, setFlatData] = useState<FlatDetails[] | undefined>();
   const [data, setData] = useState<FlatDetails[] | undefined>();
 
-  const [region, setRegion] = useState<string[]>([]);
+  const [region, setRegion] = useState<string[]>(() => getItem("region") || []);
   const [minPrc, setMinPrc] = useState<string>("");
   const [maxPrc, setMaxPrc] = useState<string>("");
   const [minArea, setMinArea] = useState<string>("");
   const [maxArea, setMaxArea] = useState<string>("");
   const [rooms, setRooms] = useState<string>("");
   const [error, setError] = useState<string>("");
+
+  useEffect(() => {
+    setItem("region", region);
+  }, [region]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,13 +43,18 @@ export default function HomePage() {
 
   const handleRegionFilter: () => void = () => {
     const regionIds = Object.values(region);
-
-    if (regionIds.length > 0) {
-      const res = flatData?.filter((flat) => {
+    const err = "მონაცემი ვერ მოიძებნა";
+    const res = flatData?.filter((flat) => {
+      if (regionIds.length > 0) {
+        setError("");
         return regionIds.includes(String(flat.city.region_id));
-      });
-      setData(res);
-    }
+      } else if (regionIds.length === 0) {
+        setError("");
+        return true;
+      }
+    });
+    if (res?.length === 0) return setError(err);
+    setData(res);
   };
 
   const handleRangeFilter: (
@@ -97,6 +107,12 @@ export default function HomePage() {
     }
     setData(res);
   };
+
+  useEffect(() => {
+    if (flatData) {
+      handleRegionFilter();
+    }
+  }, [flatData]);
 
   return (
     <Main>
