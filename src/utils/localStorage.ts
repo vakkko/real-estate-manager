@@ -1,4 +1,4 @@
-export function setItem(key: string, value: string[]) {
+export function setItem(key: string, value: string[] | string) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (err) {

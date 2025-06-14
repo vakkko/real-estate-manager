@@ -11,16 +11,36 @@ export default function HomePage() {
   const [data, setData] = useState<FlatDetails[] | undefined>();
 
   const [region, setRegion] = useState<string[]>(() => getItem("region") || []);
-  const [minPrc, setMinPrc] = useState<string>("");
-  const [maxPrc, setMaxPrc] = useState<string>("");
-  const [minArea, setMinArea] = useState<string>("");
-  const [maxArea, setMaxArea] = useState<string>("");
+  const [minPrc, setMinPrc] = useState<string>(() => getItem("minPrc") || "");
+  const [maxPrc, setMaxPrc] = useState<string>(() => getItem("maxPrc") || "");
+  const [minArea, setMinArea] = useState<string>(
+    () => getItem("minArea") || ""
+  );
+  const [maxArea, setMaxArea] = useState<string>(
+    () => getItem("maxArea") || ""
+  );
   const [rooms, setRooms] = useState<string>("");
   const [error, setError] = useState<string>("");
 
   useEffect(() => {
     setItem("region", region);
   }, [region]);
+
+  useEffect(() => {
+    setItem("minPrc", minPrc);
+  }, [minPrc]);
+
+  useEffect(() => {
+    setItem("maxPrc", maxPrc);
+  }, [maxPrc]);
+
+  useEffect(() => {
+    setItem("minArea", minArea);
+  }, [minArea]);
+
+  useEffect(() => {
+    setItem("maxArea", maxArea);
+  }, [maxArea]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,6 +131,8 @@ export default function HomePage() {
   useEffect(() => {
     if (flatData) {
       handleRegionFilter();
+      handleRangeFilter(minPrc, maxPrc, "price");
+      handleRangeFilter(minArea, maxArea, "area");
     }
   }, [flatData]);
 
