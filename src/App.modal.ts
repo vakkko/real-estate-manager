@@ -180,3 +180,10 @@ export interface FilterByRegProps {
   handleRegionFilter: () => void;
   setShowRegion: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface FilterOptProps {
+  data: RegionType[];
+  setRegion: React.Dispatch<SetStateAction<string[]>>;
+  region: string[];
+  handleRegionFilter: (reg: string[]) => void;
+}

@@ -46,3 +46,16 @@ background-color: var(--backgroundGray)!important;
 `}
   }
 `;
+
+export const Options = styled.div`
+  margin-top: 1.6rem;
+  display: flex;
+  gap: 0.8rem;
+
+  & > button {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+    color: var(--darkBlue);
+  }
+`;

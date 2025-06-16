@@ -61,8 +61,8 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  const handleRegionFilter: () => void = () => {
-    const regionIds = Object.values(region);
+  const handleRegionFilter: (reg?: string[]) => void = (reg) => {
+    const regionIds = reg ? reg : Object.values(region);
     const err = "მონაცემი ვერ მოიძებნა";
     const res = flatData?.filter((flat) => {
       if (regionIds.length > 0) {
@@ -130,9 +130,15 @@ export default function HomePage() {
 
   useEffect(() => {
     if (flatData) {
-      handleRegionFilter();
-      handleRangeFilter(minPrc, maxPrc, "price");
-      handleRangeFilter(minArea, maxArea, "area");
+      if (region.length > 0) {
+        handleRegionFilter();
+      }
+      if (minPrc !== "" && maxPrc !== "") {
+        handleRangeFilter(minPrc, maxPrc, "price");
+      }
+      if (minArea !== "" && maxArea !== "") {
+        handleRangeFilter(minArea, maxArea, "area");
+      }
     }
   }, [flatData]);
 

@@ -4,6 +4,7 @@ export const FlatsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
+  margin-top: 3.2rem;
 `;
 
 export const FlatContainer = styled.div`

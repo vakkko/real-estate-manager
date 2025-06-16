@@ -5,6 +5,7 @@ import {
   FilterDiv,
   FilterOptions,
   OptionButton,
+  Options,
 } from "./filter.styled";
 import { useContext, useState } from "react";
 import AgentModal from "../../../components/AgentModal/AgentModal.tsx";
@@ -14,6 +15,9 @@ import { LocationContext } from "../../../context/Contexts.ts";
 import { CityType, FilterProps, RegionType } from "../../../App.modal.ts";
 import FilterByPrc from "./FilterByPrc/FilterByPrc.tsx";
 import FilterByRooms from "./FilterByRooms/FilterByRooms.tsx";
+import FilterOpts from "./FilterOpts/FilterOpts.tsx";
+import FilterOptsPrc from "./FilterOptsPrc/FilterOptsPrc.tsx";
+import FilterOptsRms from "./FilterOptsRms/FilterOptsRms.tsx";
 
 export default function Filter({
   region,
@@ -183,6 +187,33 @@ export default function Filter({
             )}
         </ButtonsDiv>
       </FilterDiv>
+      {((region.length > 0 && contextData) ||
+        minPrc ||
+        maxPrc ||
+        minArea ||
+        maxArea ||
+        rooms) && (
+        <Options>
+          {region.length > 0 && contextData && (
+            <FilterOpts
+              region={region}
+              setRegion={setRegion}
+              handleRegionFilter={handleRegionFilter}
+              data={contextData[0].filter((reg) =>
+                region.includes(String(reg.id))
+              )}
+            />
+          )}
+          {(minPrc || maxPrc) && (
+            <FilterOptsPrc prc min={minPrc} max={maxPrc} />
+          )}
+          {(minArea || maxArea) && (
+            <FilterOptsPrc min={minArea} max={maxArea} />
+          )}
+          {rooms && <FilterOptsRms rooms={rooms} />}
+          <button>გასუფთავება</button>
+        </Options>
+      )}
     </>
   );
 }
