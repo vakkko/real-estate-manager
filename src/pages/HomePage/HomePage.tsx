@@ -113,18 +113,26 @@ export default function HomePage() {
     }
   };
 
-  const handleRmsFilter: () => void = () => {
+  const handleRmsFilter: (rms?: string) => void = (rms) => {
     const errMsg = `ოთახის ამ რაოდენობით ბინა არ მოიძებნა`;
-    const room = Number(rooms);
+    const room = rms ?? rooms;
+
     const res = flatData?.filter((flat) => {
-      if (rooms === "8+") {
+      if (!room || room === "") return true;
+
+      if (room === "8+") {
         return flat.bedrooms >= 8;
       }
-      return flat.bedrooms === room;
+
+      return flat.bedrooms === Number(room);
     });
-    if (res?.length === 0) {
+
+    if (!res || res.length === 0) {
       setError(errMsg);
+    } else {
+      setError("");
     }
+
     setData(res);
   };
 

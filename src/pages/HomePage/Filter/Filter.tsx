@@ -205,12 +205,31 @@ export default function Filter({
             />
           )}
           {(minPrc || maxPrc) && (
-            <FilterOptsPrc prc min={minPrc} max={maxPrc} />
+            <FilterOptsPrc
+              setMin={setMinPrc}
+              setMax={setMaxPrc}
+              handleRangeFilter={handleRangeFilter}
+              prc
+              min={minPrc}
+              max={maxPrc}
+            />
           )}
           {(minArea || maxArea) && (
-            <FilterOptsPrc min={minArea} max={maxArea} />
+            <FilterOptsPrc
+              setMin={setMinArea}
+              setMax={setMaxArea}
+              handleRangeFilter={handleRangeFilter}
+              min={minArea}
+              max={maxArea}
+            />
           )}
-          {rooms && <FilterOptsRms rooms={rooms} />}
+          {rooms && (
+            <FilterOptsRms
+              setRooms={setRooms}
+              handleRmsFilter={handleRmsFilter}
+              rooms={rooms}
+            />
+          )}
           <button>გასუფთავება</button>
         </Options>
       )}
