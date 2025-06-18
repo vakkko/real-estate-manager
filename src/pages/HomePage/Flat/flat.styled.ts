@@ -45,6 +45,7 @@ export const Price = styled.span`
   font-weight: 700;
   font-size: 2.8rem;
   line-height: 100%;
+  color: var(--darkBlue);
 `;
 
 export const LocationBox = styled.div`

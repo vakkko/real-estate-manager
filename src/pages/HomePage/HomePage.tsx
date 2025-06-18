@@ -168,6 +168,7 @@ export default function HomePage() {
         handleRegionFilter={handleRegionFilter}
         handleRangeFilter={handleRangeFilter}
         handleRmsFilter={handleRmsFilter}
+        setData={setData}
       />
       {error === "" ? (
         <Flat flatData={data?.length ? data : flatData} />

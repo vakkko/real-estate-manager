@@ -35,6 +35,7 @@ export default function Filter({
   handleRegionFilter,
   handleRangeFilter,
   handleRmsFilter,
+  setData,
 }: FilterProps) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showRegion, setShowRegion] = useState<boolean>(false);
@@ -101,6 +102,16 @@ export default function Filter({
     setShowRegion(false);
     setShowPrice(false);
     setShowArea(false);
+  };
+
+  const handleReset = () => {
+    setRegion([]);
+    setMinArea("");
+    setMaxArea("");
+    setMinPrc("");
+    setMaxPrc("");
+    setRooms("");
+    setData(undefined);
   };
 
   return (
@@ -230,7 +241,7 @@ export default function Filter({
               rooms={rooms}
             />
           )}
-          <button>გასუფთავება</button>
+          <button onClick={handleReset}>გასუფთავება</button>
         </Options>
       )}
     </>

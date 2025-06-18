@@ -14,7 +14,7 @@ export default function Flat({ flatData }: FlatProps) {
     <FlatsContainer>
       {flatData &&
         flatData.map((flat) => (
-          <FlatContainer key={flat.id}>
+          <FlatContainer>
             <SaleType>
               {flat.is_rental === 0 ? "ქირავდება" : "იყიდება"}
             </SaleType>

@@ -170,6 +170,7 @@ export interface FilterProps {
   handleRegionFilter: () => void;
   handleRangeFilter: (min: string, max: string, key: keyof FlatDetails) => void;
   handleRmsFilter: () => void;
+  setData: React.Dispatch<React.SetStateAction<FlatDetails[] | undefined>>;
 }
 
 export interface FilterByRegProps {
