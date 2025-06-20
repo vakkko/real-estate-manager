@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import { FlatDetails } from "../App.modal";
-import { token, realEstate } from "../constants/apiConstant";
+import { token } from "../constants/apiConstant";
 
-export default function useFetchRealEstate() {
-  const [data, setData] = useState<FlatDetails[]>();
+export default function useFetchData<T>(url: string) {
+  const [data, setData] = useState<T | undefined>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await fetch(realEstate, {
+        const resp = await fetch(url, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -23,7 +22,7 @@ export default function useFetchRealEstate() {
       }
     };
     fetchData();
-  }, []);
+  }, [url]);
 
-  return data !== undefined && data;
+  return data;
 }

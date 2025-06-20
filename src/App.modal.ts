@@ -6,6 +6,7 @@ import {
   UseFormRegister,
   UseFormWatch,
 } from "react-hook-form";
+import FlatDetails from "./pages/AddListing/FlatDetails/FlatDetails";
 
 export interface ButtonProps {
   text: string;
@@ -124,6 +125,22 @@ export interface FlatDetails {
       name: string;
     };
   };
+}
+
+export interface FlatDetailsExt extends FlatDetails {
+  description: string;
+  created_at: string;
+
+  agent_id: number;
+  agent: agentProps & { id: number };
+}
+
+export interface agentProps {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  avatar: string;
 }
 
 export interface FlatProps {

@@ -9,7 +9,7 @@ import {
   ModalContainer,
 } from "./agentModal.styled";
 import { useForm } from "react-hook-form";
-import { token, agentsApi } from "../../constants/apiConstant";
+import { token, agentsUrl } from "../../constants/apiConstant";
 
 export default function AgentModal({
   handleCloseClick,
@@ -77,7 +77,7 @@ export default function AgentModal({
       formData.append("avatar", file);
 
       try {
-        const response = await fetch(agentsApi, {
+        const response = await fetch(agentsUrl, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,

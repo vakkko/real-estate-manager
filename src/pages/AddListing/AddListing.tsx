@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { ListingDiv } from "./addListing.styled";
 import Agent from "./Agent/Agent";
 import Agreement from "./Agreement/Agreement";
@@ -7,16 +6,18 @@ import FlatDetails from "./FlatDetails/FlatDetails";
 import Placing from "./Placing/Placing";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import { useForm } from "react-hook-form";
-import { token, agentsApi, realEstate } from "../../constants/apiConstant";
+import { token, realEstate, agentsUrl } from "../../constants/apiConstant";
 import { AgentsType } from "../../App.modal";
 import { useNavigate } from "react-router";
+import useFetchData from "../../hooks/useFetchData";
+import { useState } from "react";
 
 export default function AddListing() {
   const [type, setType] = useState<string | undefined>("");
   const [description, setDescription] = useState<string>("");
   const [preview, setPreview] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
-  const [agents, setAgents] = useState<AgentsType[] | undefined>();
+  // const [agents, setAgents] = useState<AgentsType[] | undefined>();
   const [selected, setSelected] = useState<AgentsType | undefined>();
   const [count, setCount] = useState<number>(0);
   const [city, setCity] = useState<number>();
@@ -56,24 +57,7 @@ export default function AddListing() {
     setPreview("");
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(agentsApi, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.ok) throw new Error("Invalid fetching data");
-        const data = await response.json();
-        setAgents(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const agents: AgentsType[] | undefined = useFetchData(agentsUrl);
 
   const handleSubmit = async () => {
     if (

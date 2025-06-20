@@ -5,6 +5,7 @@ import { HashRouter } from "react-router";
 import HomePage from "./pages/HomePage/HomePage.tsx";
 import { GlobalStyles } from "./styles/GlobalStyles.ts";
 import AddListing from "./pages/AddListing/AddListing.tsx";
+import Property from "./pages/Property/Property.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <HashRouter>
@@ -13,6 +14,7 @@ createRoot(document.getElementById("root")!).render(
       <Route path="/" element={<App />}>
         <Route index element={<HomePage />} />
         <Route path="/add-listing" element={<AddListing />} />
+        <Route path="/property/:propertyId" element={<Property />} />
       </Route>
     </Routes>
   </HashRouter>
