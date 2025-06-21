@@ -1,6 +1,7 @@
 import { FlatDetails, FlatDetailsExt } from "../../../App.modal";
 import { realEstate } from "../../../constants/apiConstant";
 import useFetchData from "../../../hooks/useFetchData";
+import { ImageContainer, PropCard } from "./propertyCard.styled";
 import PropertyDetails from "./PropertyDetails/PropertyDetails";
 
 export default function PropertyCard({
@@ -28,12 +29,13 @@ export default function PropertyCard({
     String(date.getFullYear()).slice(2, 4);
 
   return (
-    <div>
-      <div>
+    <PropCard>
+      <ImageContainer>
+        <p>{propertyData?.is_rental === 1 ? "იყიდება" : "ქირავდება"}</p>
         <img src={propertyData?.image} alt="flat" />
-        <span>{postedDate}</span>
-      </div>
+        <span>გამოქვეყნების თარიღი: {postedDate}</span>
+      </ImageContainer>
       <PropertyDetails propertyData={propertyData} />
-    </div>
+    </PropCard>
   );
 }

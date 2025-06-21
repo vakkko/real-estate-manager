@@ -1,5 +1,6 @@
 import { FlatDetailsExt } from "../../../../App.modal";
 import Agent from "./Agent/Agent";
+import { Details, PropDetContainer } from "./propertyDetials.styled";
 
 export default function PropertyDetails({
   propertyData,
@@ -8,9 +9,9 @@ export default function PropertyDetails({
 }) {
   return (
     propertyData && (
-      <div>
+      <PropDetContainer>
         <h1>{propertyData.price}</h1>
-        <div>
+        <Details>
           <div>
             <img src="./assets/location-icon.svg" alt="location" />
             <p>
@@ -29,7 +30,7 @@ export default function PropertyDetails({
             <img src="./assets/postal.svg" alt="postal" />
             <p>საფოსტო ინდექსი {propertyData.zip_code}</p>
           </div>
-        </div>
+        </Details>
         <p>{propertyData.description}</p>
         <Agent
           avatar={propertyData.agent.avatar}
@@ -39,7 +40,7 @@ export default function PropertyDetails({
           phone={propertyData.agent.phone}
         />
         <button>ლისტინგის წაშლა</button>
-      </div>
+      </PropDetContainer>
     )
   );
 }

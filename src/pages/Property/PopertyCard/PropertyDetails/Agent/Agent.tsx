@@ -1,4 +1,5 @@
 import { agentProps } from "../../../../../App.modal";
+import { AgentContacts, AgentContainer, AgentInfo } from "./agent.styled";
 
 export default function Agent({
   avatar,
@@ -8,15 +9,17 @@ export default function Agent({
   email,
 }: agentProps) {
   return (
-    <div>
-      <div>
+    <AgentContainer>
+      <AgentInfo>
         <img src={avatar} alt="avatar " />
         <div>
-          <span>{name}</span> <span>{surname}</span>
+          <p>
+            {name} {surname}
+          </p>
           <span>აგენტი</span>
         </div>
-      </div>
-      <div>
+      </AgentInfo>
+      <AgentContacts>
         <div>
           <img src="./assets/mail.svg" alt="maik" />
           <span>{email}</span>
@@ -25,7 +28,7 @@ export default function Agent({
           <img src="./assets/phone.svg" alt="phone" />
           <span>{phone}</span>
         </div>
-      </div>
-    </div>
+      </AgentContacts>
+    </AgentContainer>
   );
 }
