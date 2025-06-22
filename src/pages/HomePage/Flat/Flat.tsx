@@ -10,9 +10,13 @@ import {
   SaleType,
 } from "./flat.styled";
 
-export default function Flat({ flatData }: FlatProps) {
+export default function Flat({ flatData, related }: FlatProps) {
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <FlatsContainer>
+    <FlatsContainer $related={related}>
       {flatData &&
         flatData.map((flat) => (
           <Link key={flat.id} to={`/property/${flat.id}`}>
@@ -20,7 +24,11 @@ export default function Flat({ flatData }: FlatProps) {
               <SaleType>
                 {flat.is_rental === 0 ? "ქირავდება" : "იყიდება"}
               </SaleType>
-              <FlatImg src={flat.image} alt="flat" />
+              <FlatImg
+                onMouseDown={related ? handleMouseDown : undefined}
+                src={flat.image}
+                alt="flat"
+              />
               <div>
                 <Price>{flat.price} ₾</Price>
                 <LocationBox>

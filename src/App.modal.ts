@@ -145,6 +145,7 @@ export interface agentProps {
 
 export interface FlatProps {
   flatData: FlatDetails[] | undefined;
+  related?: boolean;
 }
 
 export interface RangesProps {

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PropDetContainer = styled.div`
+  width: 25%;
   & > h1 {
     font-weight: 700;
     font-size: 48px;

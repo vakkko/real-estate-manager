@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
-export const FlatsContainer = styled.div`
-  display: grid;
+export const FlatsContainer = styled.div<{ $related: boolean | undefined }>`
+  ${(proprs) =>
+    !proprs.$related
+      ? ` display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 2rem;
-  margin-top: 3.2rem;
+  margin-top: 3.2rem;`
+      : `
+    display: flex;
+    align-items: center;
+    gap: 4rem;`}
 `;
 
 export const FlatContainer = styled.div`

@@ -1,6 +1,4 @@
-import { FlatDetails, FlatDetailsExt } from "../../../App.modal";
-import { realEstate } from "../../../constants/apiConstant";
-import useFetchData from "../../../hooks/useFetchData";
+import { FlatDetailsExt } from "../../../App.modal";
 import { ImageContainer, PropCard } from "./propertyCard.styled";
 import PropertyDetails from "./PropertyDetails/PropertyDetails";
 
@@ -11,15 +9,6 @@ export default function PropertyCard({
 }) {
   const isoString = propertyData.created_at;
   const date = new Date(isoString);
-  const realEstateData: FlatDetails[] | undefined = useFetchData(realEstate);
-
-  const relatedData =
-    realEstateData &&
-    realEstateData.filter((property) => {
-      if (property.id !== propertyData.id) {
-        return property.city_id === propertyData.city_id;
-      }
-    });
 
   const postedDate =
     String(date.getDate()).padStart(2, "0") +

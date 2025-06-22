@@ -5,6 +5,7 @@ export const AgentContainer = styled.div`
   border-radius: 8px;
   padding: 2.4rem 2rem;
   margin-bottom: 2rem;
+  margin-top: 5rem;
 `;
 
 export const AgentInfo = styled.div`
