@@ -8,7 +8,7 @@ import {
   Options,
 } from "./filter.styled";
 import { useContext, useState } from "react";
-import AgentModal from "../../../components/AgentModal/AgentModal.tsx";
+import AgentModal from "../../../components/modals/AgentModal/AgentModal.tsx";
 import { createPortal } from "react-dom";
 import FilterByReg from "./FilterByReg/FilterByReg.tsx";
 import { LocationContext } from "../../../context/Contexts.ts";
@@ -62,13 +62,11 @@ export default function Filter({
   const root = document.getElementById("root");
   if (showModal) {
     if (root) {
-      root.style.backgroundColor = "rgba(2, 21, 38, 0.34)";
-      root.style.filter = "blur(5px)";
+      root.classList.add("active");
     }
   } else {
     if (root) {
-      root.style.backgroundColor = "transparent";
-      root.style.filter = "none";
+      root.classList.remove("active");
     }
   }
 

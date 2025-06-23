@@ -26,6 +26,11 @@ body{
     position: relative;
 }
 
+#root.active{
+    background-color: rgba(2, 21, 38, 0.34);
+    filter: blur(5px);
+}
+
 button{
     background-color: transparent;
     border: none;

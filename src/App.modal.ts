@@ -206,3 +206,8 @@ export interface FilterOptProps {
   region: string[];
   handleRegionFilter: (reg: string[]) => void;
 }
+
+export interface DeleteModalProps {
+  handleClose: () => void;
+  id: number;
+}

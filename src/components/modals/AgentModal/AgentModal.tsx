@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { AgentModalProps } from "../../App.modal";
-import UploadPhoto from "../../pages/AddListing/UploadPhoto/UploadPhoto";
-import Button from "../Button/Button";
-import Input from "../Input/Input";
+import { AgentModalProps } from "../../../App.modal";
+import UploadPhoto from "../../../pages/AddListing/UploadPhoto/UploadPhoto";
+import Button from "../../Button/Button";
+import Input from "../../Input/Input";
 import {
   ButtonsContainer,
   InputContainer,
   ModalContainer,
 } from "./agentModal.styled";
 import { useForm } from "react-hook-form";
-import { token, agentsUrl } from "../../constants/apiConstant";
+import { token, agentsUrl } from "../../../constants/apiConstant";
 
 export default function AgentModal({
   handleCloseClick,
