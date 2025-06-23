@@ -88,6 +88,7 @@ export default function AgentModal({
           reset();
           setPreview("");
           setFile(null);
+          handleCloseClick();
         }
       } catch (error) {
         console.error(error);

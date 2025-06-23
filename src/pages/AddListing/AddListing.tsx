@@ -9,15 +9,14 @@ import { useForm } from "react-hook-form";
 import { token, realEstate, agentsUrl } from "../../constants/apiConstant";
 import { AgentsType } from "../../App.modal";
 import { useNavigate } from "react-router";
-import useFetchData from "../../hooks/useFetchData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AddListing() {
   const [type, setType] = useState<string | undefined>("");
   const [description, setDescription] = useState<string>("");
   const [preview, setPreview] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
-  // const [agents, setAgents] = useState<AgentsType[] | undefined>();
+  const [agents, setAgents] = useState<AgentsType[] | undefined>();
   const [selected, setSelected] = useState<AgentsType | undefined>();
   const [count, setCount] = useState<number>(0);
   const [city, setCity] = useState<number>();
@@ -29,6 +28,7 @@ export default function AddListing() {
     formState: { errors },
   } = useForm({ mode: "onChange" });
   const navigate = useNavigate();
+  const [render, setRender] = useState<number>(0);
 
   const addrress = watch("მისამართი *");
   const zipCode = watch("საფოსტო ინდექსი *");
@@ -57,7 +57,26 @@ export default function AddListing() {
     setPreview("");
   };
 
-  const agents: AgentsType[] | undefined = useFetchData(agentsUrl);
+  useEffect(() => {
+    const fetChData = async () => {
+      try {
+        const response = await fetch(agentsUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Invalid fetching data");
+        }
+
+        const data = await response.json();
+        setAgents(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetChData();
+  }, [render]);
 
   const handleSubmit = async () => {
     if (
@@ -110,6 +129,8 @@ export default function AddListing() {
     }
   };
 
+  console.log(render);
+
   return (
     <ListingDiv>
       <h1>ლისტინგის დამატება</h1>
@@ -139,6 +160,7 @@ export default function AddListing() {
         selected={selected}
         setSelected={setSelected}
         agents={agents}
+        setRender={setRender}
       />
     </ListingDiv>
   );

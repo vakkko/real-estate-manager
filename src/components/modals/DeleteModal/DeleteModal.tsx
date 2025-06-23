@@ -37,7 +37,7 @@ export default function DeleteModal({ handleClose, id }: DeleteModalProps) {
         <h2>გსურთ წაშალოთ ლისტინგი</h2>
         <div>
           <Button handleClick={handleClose} text="გაუქმება" />
-          <button onClick={handleDelete}>დადასტურება</button>
+          <Button text="დადასტურება" handleClick={handleDelete} background />
         </div>
       </div>
     </DeleteCont>

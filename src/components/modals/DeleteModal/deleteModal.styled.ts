@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const DeleteCont = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   display: flex;
   flex-direction: column;

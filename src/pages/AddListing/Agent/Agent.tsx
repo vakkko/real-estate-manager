@@ -4,14 +4,18 @@ import { AgentsBox, AgentOption, EmptyValue } from "./agent.styled";
 import Button from "../../../components/Button/Button";
 import { ButtonsDiv } from "./agent.styled";
 import { Link } from "react-router";
+import { createPortal } from "react-dom";
+import AgentModal from "../../../components/modals/AgentModal/AgentModal";
 
 export default function Agent({
   agents,
   selected,
   setSelected,
   handleSubmit,
+  setRender,
 }: AgentsProps) {
   const [showAgent, setShowAgent] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleClick = () => {
     setShowAgent(!showAgent);
@@ -21,6 +25,25 @@ export default function Agent({
     setSelected(person);
     setShowAgent(false);
   };
+
+  const handleAddAgent = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseClick = () => {
+    setShowModal(false);
+    setRender((prev) => prev + 1);
+  };
+
+  const root = document.getElementById("root");
+
+  if (showModal) {
+    if (root) {
+      root.classList.add("active");
+    }
+  } else {
+    root?.classList.remove("active");
+  }
 
   return (
     <AgentsBox>
@@ -51,25 +74,41 @@ export default function Agent({
           )}
         </EmptyValue>
       )}
-      {showAgent &&
-        agents?.map((agent) => (
-          <AgentOption
-            $showAgent={showAgent}
-            onClick={() => handleAgentClick(agent)}
-            key={agent.id}
-          >
-            <img src={agent.avatar} alt="agent" />
-            <span>
-              {agent.name} {agent.surname}
-            </span>
+      {showAgent && (
+        <>
+          <AgentOption onClick={handleAddAgent} $showAgent={showAgent}>
+            <img src="./assets/plus-circle.svg" alt="plus circle" />
+            <span>დაამატე აგენტი</span>
           </AgentOption>
-        ))}
+          {agents?.map((agent) => (
+            <AgentOption
+              $showAgent={showAgent}
+              onClick={() => handleAgentClick(agent)}
+              key={agent.id}
+            >
+              <img src={agent.avatar} alt="agent" />
+              <span>
+                {agent.name} {agent.surname}
+              </span>
+            </AgentOption>
+          ))}
+        </>
+      )}
+
       <ButtonsDiv>
         <Link to={"/"}>
           <Button text="გაუქმება" />
         </Link>
         <Button handleClick={handleSubmit} text="დაამატე ლისტინგი" background />
       </ButtonsDiv>
+      {showModal &&
+        createPortal(
+          <AgentModal
+            showModal={showModal}
+            handleCloseClick={handleCloseClick}
+          />,
+          document.body
+        )}
     </AgentsBox>
   );
 }

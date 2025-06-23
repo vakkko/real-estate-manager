@@ -104,6 +104,7 @@ export interface AgentsProps {
   selected: AgentsType | undefined;
   setSelected: React.Dispatch<SetStateAction<AgentsType | undefined>>;
   handleSubmit: () => void;
+  setRender: React.Dispatch<SetStateAction<number>>;
 }
 
 export interface FlatDetails {
