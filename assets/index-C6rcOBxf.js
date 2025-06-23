@@ -804,8 +804,9 @@ select{
   }
 `,ix=he.div`
   position: absolute;
-  top: 50%;
+  top: 38%;
   left: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   display: flex;
   flex-direction: column;
