@@ -24,8 +24,13 @@ export const RelatedCont = styled.div`
   }
 `;
 
-export const Carousel = styled.div`
+export const Carousel = styled.div<{ scrolable: boolean | undefined }>`
+  ${(props) =>
+    props.scrolable &&
+    `
   overflow-x: scroll;
   white-space: nowrap;
+  `}
+
   width: 159rem;
 `;

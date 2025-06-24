@@ -27,15 +27,23 @@ export default function RelatedProperty({
       {relatedData?.length !== 0 ? (
         <>
           <h1>ბინები მსგავს ლოკაციაზე</h1>
-          <button onClick={() => handleScroll("left")}>
-            <img src="./assets/left-arrow.svg" alt="left arrow" />
-          </button>
-          <Carousel ref={ref} {...events}>
+          {relatedData && relatedData?.length > 4 && (
+            <button onClick={() => handleScroll("left")}>
+              <img src="./assets/left-arrow.svg" alt="left arrow" />
+            </button>
+          )}
+          <Carousel
+            scrolable={relatedData && relatedData?.length > 4}
+            ref={ref}
+            {...events}
+          >
             <Flat related flatData={relatedData} />
           </Carousel>
-          <button onClick={() => handleScroll("right")}>
-            <img src="./assets/right-arrow.svg" alt="right arrow" />
-          </button>
+          {relatedData && relatedData?.length > 4 && (
+            <button onClick={() => handleScroll("right")}>
+              <img src="./assets/right-arrow.svg" alt="right arrow" />
+            </button>
+          )}
         </>
       ) : (
         <h1>ბინები მსგავს ლოკაციაზე არ მოიძებნა</h1>

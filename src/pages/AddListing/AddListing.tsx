@@ -129,7 +129,6 @@ export default function AddListing() {
     }
   };
 
-  console.log(render);
 
   return (
     <ListingDiv>
